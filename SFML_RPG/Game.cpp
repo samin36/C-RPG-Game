@@ -27,13 +27,23 @@ void Game::initWindow() {
 	this->window->setVerticalSyncEnabled(verticalSyncEnabled);
 }
 
-void Game::initStates() {
-	this->states.push(new GameState(this->window));
+void Game::initKeys() {
+	this->supportedKeys.emplace("Escape", Keyboard::Key::Escape);
+	this->supportedKeys.emplace("Left", Keyboard::Key::Left);
+	this->supportedKeys.emplace("Right", Keyboard::Key::Right);
+	this->supportedKeys.emplace("Up", Keyboard::Key::Up);
+	this->supportedKeys.emplace("Down", Keyboard::Key::Down);
 }
+
+void Game::initStates() {
+	this->states.push(new GameState(this->window, this->supportedKeys));
+}
+
 
 //Constructors/Destructors
 Game::Game() {
 	this->initWindow();
+	this->initKeys();
 	this->initStates();
 	this->dtClock = Clock();
 }
@@ -74,14 +84,13 @@ void Game::update() {
 void Game::updateDt() {
 	//Updates the dt variable with the time it takes to update and render one frame
 	this->dt = this->dtClock.restart().asSeconds();
-	//skldfjslkdfj;
 }
 
 void Game::render() {
 	this->window->clear();
 
 	if (!this->states.empty()) {
-		this->states.top()->render();
+		this->states.top()->render(this->window);
 	}
 
 	this->window->display();
