@@ -1,7 +1,6 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "GameState.h"
 #include "MainMenuState.h"
 
 using namespace sf;

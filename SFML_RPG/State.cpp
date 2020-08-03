@@ -21,3 +21,9 @@ void State::checkForQuit(){
 const bool& State::getQuit() const {
 	return this->quit;
 }
+
+void State::updateMousePositions() {
+	this->mousePosScreen = Mouse::getPosition();
+	this->mousePosWindow = Mouse::getPosition(*this->window);
+	this->mousePosView = this->window->mapPixelToCoords(Mouse::getPosition(*this->window));
+}
