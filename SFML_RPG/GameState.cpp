@@ -28,7 +28,7 @@ void GameState::updateInput(const float& dt) {
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key(this->keybinds.at("MOVE_RIGHT")))) {
 		this->player.move(dt, 1.f, 0.f);
-	}
+	} 
 	if (Keyboard::isKeyPressed(Keyboard::Key(this->keybinds.at("MOVE_UP")))) {
 		this->player.move(dt, 0.f, -1.f);
 	}
@@ -38,11 +38,12 @@ void GameState::updateInput(const float& dt) {
 }
 
 void GameState::initKeybinds() {
-	this->keybinds.emplace("MOVE_LEFT", this->supportedKeys.at("Left"));
-	this->keybinds.emplace("MOVE_RIGHT", this->supportedKeys.at("Right"));
-	this->keybinds.emplace("MOVE_UP", this->supportedKeys.at("Up"));
-	this->keybinds.emplace("MOVE_DOWN", this->supportedKeys.at("Down"));
-
+	std::ifstream inputFileStream("./Config/gamestateKeybinds.ini");
+	std::string actionName, actionKey;
+	while (inputFileStream.is_open() && inputFileStream >> actionName >> actionKey) {
+		this->keybinds[actionName] = this->supportedKeys.at(actionKey);
+	}
+	inputFileStream.close();
 }
 
 void GameState::endState() {

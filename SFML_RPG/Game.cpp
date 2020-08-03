@@ -28,15 +28,23 @@ void Game::initWindow() {
 }
 
 void Game::initKeys() {
-	this->supportedKeys.emplace("Escape", Keyboard::Key::Escape);
-	this->supportedKeys.emplace("Left", Keyboard::Key::Left);
-	this->supportedKeys.emplace("Right", Keyboard::Key::Right);
-	this->supportedKeys.emplace("Up", Keyboard::Key::Up);
-	this->supportedKeys.emplace("Down", Keyboard::Key::Down);
+	std::ifstream inputFileStream("./Config/supportedKeys.ini");
+	std::string keyName;
+	int keyValue;
+	while (inputFileStream.is_open() && inputFileStream >> keyName >> keyValue) {
+		this->supportedKeys[keyName] = keyValue;
+	}
+
+	inputFileStream.close();
+	// For DEBUG, remove later
+	/*for (auto currKey : this->supportedKeys) {
+		std::cout << currKey.first << " : " << currKey.second << std::endl;
+	}*/
 }
 
 void Game::initStates() {
 	this->states.push(new GameState(this->window, this->supportedKeys));
+	this->states.push(new MainMenuState(this->window, this->supportedKeys));
 }
 
 

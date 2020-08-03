@@ -12,7 +12,8 @@ State::~State() {
 }
 
 void State::checkForQuit(){
-	if (Keyboard::isKeyPressed(Keyboard::Escape)) {
+	//Every child state must define CLOSE in order to quit
+	if (Keyboard::isKeyPressed(Keyboard::Key(this->keybinds.at("CLOSE")))) {
 		this->quit = true;
 	}
 }
