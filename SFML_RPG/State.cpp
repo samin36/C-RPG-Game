@@ -2,7 +2,7 @@
 
 using namespace sf;
 
-State::State(RenderWindow* window, const std::map<std::string, int>& supportedKeys_) : supportedKeys(supportedKeys_) {
+State::State(RenderWindow* window, const std::unordered_map<std::string, int>& supportedKeys_) : supportedKeys(supportedKeys_) {
 	this->window = window;
 	this->quit = false;
 }

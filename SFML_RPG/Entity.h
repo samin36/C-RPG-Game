@@ -10,7 +10,7 @@
 #include <fstream>
 #include <sstream>
 #include <stack>
-#include <map>
+#include <unordered_map>
 #include <vector>
 #include <ctime>
 #include <cstdlib>

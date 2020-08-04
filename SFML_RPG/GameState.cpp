@@ -1,6 +1,6 @@
 #include "GameState.h"
 using namespace sf;
-GameState::GameState(RenderWindow* window, const std::map<std::string, int>& supportedKeys) : State(window, supportedKeys) {
+GameState::GameState(RenderWindow* window, const std::unordered_map<std::string, int>& supportedKeys) : State(window, supportedKeys) {
 	this->initKeybinds();
 }
 

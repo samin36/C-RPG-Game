@@ -13,15 +13,17 @@ private:
 	float dt; 
 	Clock dtClock;
 
-	std::stack<State*> states;
 
-	std::map<std::string, int> supportedKeys;
+	std::unordered_map<std::string, int> supportedKeys;
 
 	//Initialization
 	void initWindow();
 	void initStates();
 	void initKeys();
 public:
+
+	static std::stack<State*> states;
+	
 	//Constructor/Destructor
 	Game();
     virtual ~Game();

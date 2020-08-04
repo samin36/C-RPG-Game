@@ -13,8 +13,12 @@
 
 using namespace sf;
 
+enum ButtonStates {BTN_IDLE=0, BTN_HOVER, BTN_ACTIVE};
+
 class Button {
 private:
+	short unsigned buttonState;
+
 	RectangleShape buttonShape;
 	const Font& font;
 	Text text;
@@ -24,6 +28,9 @@ private:
 public:
 	Button(float x, float y, float w, float h, const Font& font_, std::string text, Color idleColor, Color hoverColor, Color activeColor);
 	~Button();
+
+	//Accessors
+	const bool isPressed() const;
 
 	//Functions
 	void update(const Vector2f mousePos);

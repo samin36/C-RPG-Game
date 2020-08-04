@@ -11,15 +11,20 @@ protected:
 	RectangleShape background;
 	Font font;
 
+	std::unordered_map<std::string, Button*> buttons;
+
 	//Functions
 	void initFonts();
 	void initKeybinds();
+	void initButtons();
 public:
-	MainMenuState(RenderWindow* window, std::map<std::string, int>& supportedKeys);
+	MainMenuState(RenderWindow* window, std::unordered_map<std::string, int>& supportedKeys);
 	virtual ~MainMenuState();
 
-	//Must define State's pure virtual functions
 	void endState();
+	void updateButtons();
+	void renderButtons(RenderTarget* target);
+	//Must define State's pure virtual functions
 	void updateInput(const float& dt);
 	void update(const float& dt);
 	void render(RenderTarget* target = nullptr);

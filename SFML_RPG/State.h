@@ -9,8 +9,8 @@ using namespace sf;
 class State {
 protected:
 	RenderWindow* window;
-	const std::map<std::string, int> supportedKeys;
-	std::map<std::string, int> keybinds; //keybinds for each state instance
+	const std::unordered_map<std::string, int> supportedKeys;
+	std::unordered_map<std::string, int> keybinds; //keybinds for each state instance
 	bool quit;
 
 	Vector2i mousePosScreen;
@@ -24,7 +24,7 @@ protected:
 	virtual void initKeybinds() = 0;
 
 public:
-	State(RenderWindow* window, const std::map<std::string, int>& supportedKeys);
+	State(RenderWindow* window, const std::unordered_map<std::string, int>& supportedKeys);
 	virtual ~State();
 
 	const bool& getQuit() const;

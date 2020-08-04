@@ -13,7 +13,7 @@ private:
 	void initKeybinds();
 
 public:
-	GameState(RenderWindow* window, const std::map<std::string, int>& supportedKeys);
+	GameState(RenderWindow* window, const std::unordered_map<std::string, int>& supportedKeys);
 	virtual ~GameState();
 
 	//Must define State's pure virtual functions
